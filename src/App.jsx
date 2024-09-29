@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import { auth } from './firebase';
 import { onAuthStateChanged } from '@firebase/auth'
+import Navbar from './Navbar';
 
 
 export default function App() {
@@ -28,6 +29,7 @@ setuser(true);
   return (
     
   <BrowserRouter>
+  <Navbar/>
   <Routes>
     <Route path='/' element={user?<Dashboard/>:<Login/>}/><Route path='/' element ={<Login/>}/>    
     <Route path='/dashboard' element={user?<Dashboard/>:<Login/>}/>
