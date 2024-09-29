@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth'; // If you are using Firebase Authentication
 import { getFirestore } from 'firebase/firestore'; // If you are using Firestore
+import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
 
@@ -24,5 +25,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Initialize services if needed
+export const rdb = getDatabase(app);
 export const auth = getAuth(app); // For authentication
 export const db = getFirestore(app); // For Firestore

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import { rdb } from './firebase';
+import { ref, set, update } from 'firebase/database';
 
 export default function Livecategory() {
 
@@ -15,8 +17,8 @@ export default function Livecategory() {
 
     const livequiz =()=>{
 navigate("/livequiz",{ state: { cat } })
-    }
 
+    }
 
   return (
 

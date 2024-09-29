@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from './firebase'; // Adjust the path to your firebase.js
 import { collection, addDoc } from 'firebase/firestore';
+import { rdb } from './firebase';
+import { ref, update } from 'firebase/database';
 
 export default function Livequiz() {
   const location = useLocation();
@@ -35,6 +37,7 @@ export default function Livequiz() {
       console.log('Document successfully written!');
       
       // Optionally reset the form
+      sendrdb();
       setQuestion('');
       setOpt1('');
       setOpt2('');
@@ -45,6 +48,19 @@ export default function Livequiz() {
       console.error('Error adding document: ', error);
     }
   };
+
+  const sendrdb = async () => {
+    const questionRef = ref(rdb, `livequiz/sets`);
+    try {
+        await update(questionRef, {
+            [cat]: cat
+        });
+        console.log("Data Inserted Successfully");
+       
+    } catch (error) {
+        console.error("Error inserting data: ", error);
+    }
+};
 
   return (
     <div style={{ marginRight: "15%", marginLeft: "15%" }}>
